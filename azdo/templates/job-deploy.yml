@@ -1,0 +1,25 @@
+parameters:
+  env: ''
+  azuresubscription: ''
+  webappname: ''
+
+jobs:
+  - deployment: deployNetCoreOnLinux
+    displayName: Deploy Web App
+    environment: ${{ parameters.env }}
+    pool:
+      name: Azure Pipelines
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: AzureRmWebAppDeployment@4
+            displayName: 'Deploy API'
+            inputs:
+              azureSubscription: ${{ parameters.azuresubscription }}
+              appType: webAppLinux
+              WebAppName: ${{ parameters.webappname }}
+              packageForLinux: '$(Pipeline.Workspace)/${{ parameters.artifactname }}/**/*.zip'
+              RemoveAdditionalFilesFlag: true
+              ExcludeFilesFromAppDataFlag: true
+              TakeAppOfflineFlag: true

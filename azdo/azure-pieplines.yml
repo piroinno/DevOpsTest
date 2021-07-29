@@ -14,5 +14,29 @@ stages:
     jobs:
       - template: templates\job-build.yml
 
-  # - stage: dev
-  #   dependsOn: build
+  - stage: dev
+    dependsOn: build
+    jobs:
+      - template: templates\job-deploy.yml
+        parameters:
+          env: dev
+          azuresubscription: dev-sub
+          webappname: devopstestwebapi-pi-dev
+
+  - stage: qa
+    dependsOn: dev
+    jobs:
+      - template: templates\job-deploy.yml
+        parameters:
+          env: qa
+          azuresubscription: qa-sub
+          webappname: devopstestwebapi-pi-qa
+
+  - stage: prod
+    dependsOn: qa
+    jobs:
+      - template: templates\job-deploy.yml
+        parameters:
+          env: prod
+          azuresubscription: prod-sub
+          webappname: devopstestwebapi-pi-prod

@@ -8,7 +8,7 @@ jobs:
     - vstest
   steps:
   - task: NuGetToolInstaller@0
-    displayName: 'Use NuGet 4.4.1'
+    displayName: 'Use NuGet'
     inputs:
       versionSpec: 4.4.1
 
@@ -26,7 +26,7 @@ jobs:
       configuration: '$(BuildConfiguration)'
 
   - task: VSTest@2
-    displayName: 'Test Assemblies'
+    displayName: 'Test'
     inputs:
       testAssemblyVer2: |
         **\$(BuildConfiguration)\*test*.dll
@@ -34,15 +34,8 @@ jobs:
         platform: '$(BuildPlatform)'
         configuration: '$(BuildConfiguration)'
 
-  - task: PublishSymbols@2
-    displayName: 'Publish symbols path'
-    inputs:
-      SearchPattern: '**\bin\**\*.pdb'
-      PublishSymbols: false
-    continueOnError: true
-
   - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact'
+    displayName: 'Publish'
     inputs:
       PathtoPublish: '$(build.artifactstagingdirectory)'
       ArtifactName: '$(Parameters.ArtifactName)'
