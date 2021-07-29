@@ -1,0 +1,18 @@
+trigger:
+  branches:
+    include:
+    - master
+
+variables:
+  - Parameters.solution: ..\app\DevOpsTest\DevOpsTest.sln
+  - BuildPlatform: Release
+  - BuildConfiguration: Any
+  - Parameters.ArtifactName: drop
+
+stages:
+  - stage: build
+    jobs:
+      - template: templates\job-build.yml
+
+  # - stage: dev
+  #   dependsOn: build
