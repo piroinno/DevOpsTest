@@ -1,7 +1,8 @@
 # This document describes the solution for the DevOps Scenario 1.
 
+> The pipeline in its given state will not run since it's hosted in a [public project](https://dev.azure.com/piroinno/DevOpsTest) with no available agents (I am waiting on microsoft to approve my agent request for public projects)
 # Assumptions
-This solution assumes that the Azure resources (Web App service and web app api) already exist in the following environments:
+This solution assumes that the Azure resources (resource groups, app service and app api) already exist in the following environments:
 
 - dev:
   - subscritption: dev-sub
@@ -45,8 +46,13 @@ On commit the build will be triggered. By default (or specifying the success con
 - NuGet restore: restore the artifacts referenced by the projects in the solution
 - Build solution: build the solution and produce artifacts
 - Test: Run nunit tests
+- Check for any license or open source vulnerabilities
 - Publish: Publish the artifact
 
 A project permision group will be created called 'approvers only'. The qa and the prod stages will have approval gates (with the approval from anyone in the 'approvers only' group) created to prevent code automatically deploying into these environments without approval. When using pipelines for deployment, environment approval gates can be used.
 
-The deployment stages consist of 1 deployment task called 'Deploy API' whihc deploys the API into Azure.
+The deployment stages consist of 3 deployment jobs:
+
+- Deploy API: which deploys the API into Azure.
+- Deploy Web App: which deploys the web app into Azure.
+- Owasp: Checks for known API vulnerabilites.
