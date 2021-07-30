@@ -1,14 +1,3 @@
-variable "ResourceGroups" {
-  default = []
-  type = list(
-    object({
-      Name     = string
-      Location = string
-    })
-  )
-}
-
-
 variable "KeyVaults" {
   default = []
   type = list(
