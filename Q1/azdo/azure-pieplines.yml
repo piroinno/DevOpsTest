@@ -24,22 +24,22 @@ stages:
           webappname: devopstestwebapp-pi-dev
           webapiname: devopstestwebapi-pi-dev
 
-  - stage: qa
-    dependsOn: dev
-    jobs:
-      - template: templates\job-deploy.yml
-        parameters:
-          env: qa
-          azuresubscription: qa-sub
-          webappname: devopstestwebapp-pi-qa
-          webapiname: devopstestwebapi-pi-qa
+  # - stage: qa
+  #   dependsOn: dev
+  #   jobs:
+  #     - template: templates\job-deploy.yml
+  #       parameters:
+  #         env: qa
+  #         azuresubscription: qa-sub
+  #         webappname: devopstestwebapp-pi-qa
+  #         webapiname: devopstestwebapi-pi-qa
 
-  - stage: prod
-    dependsOn: qa
-    jobs:
-      - template: templates\job-deploy.yml
-        parameters:
-          env: prod
-          azuresubscription: prod-sub
-          webappname: devopstestwebapp-pi-prod
-          webapiname: devopstestwebapi-pi-prod
+  # - stage: prod
+  #   dependsOn: qa
+  #   jobs:
+  #     - template: templates\job-deploy.yml
+  #       parameters:
+  #         env: prod
+  #         azuresubscription: prod-sub
+  #         webappname: devopstestwebapp-pi-prod
+  #         webapiname: devopstestwebapi-pi-prod
