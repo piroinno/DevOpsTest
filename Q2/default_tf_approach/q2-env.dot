@@ -1,0 +1,64 @@
+digraph {
+        compound = "true"
+        newrank = "true"
+        subgraph "root" {
+                "[root] azurerm_key_vault.kv (expand)" [label = "azurerm_key_vault.kv", shape = "box"]
+                "[root] azurerm_key_vault_secret.admin_pass_vault_secret (expand)" [label = "azurerm_key_vault_secret.admin_pass_vault_secret", shape = "box"]
+                "[root] azurerm_network_interface.net_interface_one (expand)" [label = "azurerm_network_interface.net_interface_one", shape = "box"]
+                "[root] azurerm_network_interface.net_interface_two (expand)" [label = "azurerm_network_interface.net_interface_two", shape = "box"]
+                "[root] azurerm_network_security_group.nsg (expand)" [label = "azurerm_network_security_group.nsg", shape = "box"]
+                "[root] azurerm_network_security_rule.rule_one (expand)" [label = "azurerm_network_security_rule.rule_one", shape = "box"]
+                "[root] azurerm_network_security_rule.rule_two (expand)" [label = "azurerm_network_security_rule.rule_two", shape = "box"]
+                "[root] azurerm_resource_group.resource_group (expand)" [label = "azurerm_resource_group.resource_group", shape = "box"]
+                "[root] azurerm_storage_account.storage_account (expand)" [label = "azurerm_storage_account.storage_account", shape = "box"]
+                "[root] azurerm_storage_container.vm_disks (expand)" [label = "azurerm_storage_container.vm_disks", shape = "box"]
+                "[root] azurerm_virtual_machine.vm_one (expand)" [label = "azurerm_virtual_machine.vm_one", shape = "box"]
+                "[root] azurerm_virtual_machine.vm_two (expand)" [label = "azurerm_virtual_machine.vm_two", shape = "box"]
+                "[root] azurerm_virtual_network.virtual_network (expand)" [label = "azurerm_virtual_network.virtual_network", shape = "box"]
+                "[root] data.azurerm_client_config.current (expand)" [label = "data.azurerm_client_config.current", shape = "box"]
+                "[root] output.subnet_map" [label = "output.subnet_map", shape = "note"]
+                "[root] provider[\"registry.terraform.io/hashicorp/azurerm\"]" [label = "provider[\"registry.terraform.io/hashicorp/azurerm\"]", shape = "diamond"]
+                "[root] provider[\"registry.terraform.io/hashicorp/random\"]" [label = "provider[\"registry.terraform.io/hashicorp/random\"]", shape = "diamond"]
+                "[root] random_string.vm-admin-pass (expand)" [label = "random_string.vm-admin-pass", shape = "box"]
+                "[root] var.location" [label = "var.location", shape = "note"]
+                "[root] azurerm_key_vault.kv (expand)" -> "[root] azurerm_resource_group.resource_group (expand)"
+                "[root] azurerm_key_vault.kv (expand)" -> "[root] data.azurerm_client_config.current (expand)"
+                "[root] azurerm_key_vault_secret.admin_pass_vault_secret (expand)" -> "[root] azurerm_key_vault.kv (expand)"
+                "[root] azurerm_key_vault_secret.admin_pass_vault_secret (expand)" -> "[root] random_string.vm-admin-pass (expand)"
+                "[root] azurerm_network_interface.net_interface_one (expand)" -> "[root] local.subnet_map (expand)"
+                "[root] azurerm_network_interface.net_interface_two (expand)" -> "[root] local.subnet_map (expand)"
+                "[root] azurerm_network_security_group.nsg (expand)" -> "[root] azurerm_resource_group.resource_group (expand)"
+                "[root] azurerm_network_security_rule.rule_one (expand)" -> "[root] azurerm_network_security_group.nsg (expand)"
+                "[root] azurerm_network_security_rule.rule_two (expand)" -> "[root] azurerm_network_security_group.nsg (expand)"
+                "[root] azurerm_resource_group.resource_group (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/azurerm\"]"
+                "[root] azurerm_resource_group.resource_group (expand)" -> "[root] var.location"
+                "[root] azurerm_storage_account.storage_account (expand)" -> "[root] azurerm_resource_group.resource_group (expand)"
+                "[root] azurerm_storage_container.vm_disks (expand)" -> "[root] azurerm_storage_account.storage_account (expand)"
+                "[root] azurerm_virtual_machine.vm_one (expand)" -> "[root] azurerm_network_interface.net_interface_one (expand)"
+                "[root] azurerm_virtual_machine.vm_one (expand)" -> "[root] azurerm_storage_container.vm_disks (expand)"
+                "[root] azurerm_virtual_machine.vm_one (expand)" -> "[root] random_string.vm-admin-pass (expand)"
+                "[root] azurerm_virtual_machine.vm_two (expand)" -> "[root] azurerm_network_interface.net_interface_two (expand)"
+                "[root] azurerm_virtual_machine.vm_two (expand)" -> "[root] azurerm_storage_container.vm_disks (expand)"
+                "[root] azurerm_virtual_machine.vm_two (expand)" -> "[root] random_string.vm-admin-pass (expand)"
+                "[root] azurerm_virtual_network.virtual_network (expand)" -> "[root] azurerm_resource_group.resource_group (expand)"
+                "[root] data.azurerm_client_config.current (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/azurerm\"]"
+                "[root] local.subnet_map (expand)" -> "[root] azurerm_virtual_network.virtual_network (expand)"
+                "[root] meta.count-boundary (EachMode fixup)" -> "[root] azurerm_key_vault_secret.admin_pass_vault_secret (expand)"
+                "[root] meta.count-boundary (EachMode fixup)" -> "[root] azurerm_network_security_rule.rule_one (expand)"
+                "[root] meta.count-boundary (EachMode fixup)" -> "[root] azurerm_network_security_rule.rule_two (expand)"
+                "[root] meta.count-boundary (EachMode fixup)" -> "[root] azurerm_virtual_machine.vm_one (expand)"
+                "[root] meta.count-boundary (EachMode fixup)" -> "[root] azurerm_virtual_machine.vm_two (expand)"
+                "[root] meta.count-boundary (EachMode fixup)" -> "[root] output.subnet_map"
+                "[root] output.subnet_map" -> "[root] local.subnet_map (expand)"
+                "[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] azurerm_key_vault_secret.admin_pass_vault_secret (expand)"
+                "[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] azurerm_network_security_rule.rule_one (expand)"
+                "[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] azurerm_network_security_rule.rule_two (expand)"
+                "[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] azurerm_virtual_machine.vm_one (expand)"
+                "[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)" -> "[root] azurerm_virtual_machine.vm_two (expand)"
+                "[root] provider[\"registry.terraform.io/hashicorp/random\"] (close)" -> "[root] random_string.vm-admin-pass (expand)"
+                "[root] random_string.vm-admin-pass (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/random\"]"
+                "[root] root" -> "[root] meta.count-boundary (EachMode fixup)"
+                "[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/azurerm\"] (close)"
+                "[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/random\"] (close)"
+        }
+}
