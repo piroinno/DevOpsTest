@@ -99,6 +99,7 @@ Then a new input KeyVaults.auto.tfvars.json file with the driving parameters can
 }
 ```
 
+[More information](alternate_tf_approach\README.MD)
 ## _5) Explain how will you access the password stored in Key Vault and use it as Admin Password in the VM Terraform template._
 
 A random string resource has been used to generate a random string (12 characters, contains upper and lower case with special characters). The random string was used as input into the the virtual machine admin password field. A new key vault resource was added to the template and used to store the admin password as a secret.
