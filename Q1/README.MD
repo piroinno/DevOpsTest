@@ -6,15 +6,18 @@ This solution assumes that the Azure resources (resource groups, app service and
 
 - dev:
   - subscritption: dev-sub
-  - webapp name: devopstestwebapi-pi-dev
+  - app service: devopstestwebapp-pi-dev
+  - app service: devopstestwebapi-pi-dev
 
 - qa:
   - subscritption: qa-sub
-  - webapp name: devopstestwebapi-pi-qa
+  - app service: devopstestwebapp-pi-qa
+  - app service: devopstestwebapi-pi-qa
 
 - prod:
   - subscritption: prod-sub
-  - webapp name: devopstestwebapi-pi-prod
+  - app service: devopstestwebapp-pi-prod
+  - app service: devopstestwebapi-pi-prod
 
 
 Other assumptions include:
@@ -51,8 +54,9 @@ On commit the build will be triggered. By default (or specifying the success con
 
 A project permision group will be created called 'approvers only'. The qa and the prod stages will have approval gates (with the approval from anyone in the 'approvers only' group) created to prevent code automatically deploying into these environments without approval. When using pipelines for deployment, environment approval gates can be used.
 
-The deployment stages consist of 3 deployment jobs:
+Each deployment stage consist of 2 deployment jobs:
 
-- Deploy API: which deploys the API into Azure.
-- Deploy Web App: which deploys the web app into Azure.
+- deployNetCoreToLinux: Deploys the azure resource artifacts
+  - Deploy API: which deploys the API into Azure.
+  - Deploy Web App: which deploys the web app into Azure.
 - Owasp: Checks for known API vulnerabilites.

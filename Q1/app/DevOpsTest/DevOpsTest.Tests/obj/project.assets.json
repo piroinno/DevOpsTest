@@ -1226,14 +1226,27 @@
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
       },
-      "DevOpsTest/1.0.0": {
+      "FastCarzWebApi/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "compile": {
-          "bin/placeholder/DevOpsTest.dll": {}
+          "bin/placeholder/FastCarzWebApi.dll": {}
         },
         "runtime": {
-          "bin/placeholder/DevOpsTest.dll": {}
+          "bin/placeholder/FastCarzWebApi.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "FastCarzWebApp/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/FastCarzWebApp.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FastCarzWebApp.dll": {}
         },
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
@@ -4587,15 +4600,21 @@
         "system.xml.xpath.xmldocument.nuspec"
       ]
     },
-    "DevOpsTest/1.0.0": {
+    "FastCarzWebApi/1.0.0": {
       "type": "project",
-      "path": "../DevOpsTest/DevOpsTest.csproj",
-      "msbuildProject": "../DevOpsTest/DevOpsTest.csproj"
+      "path": "../FastCarzWebApi/FastCarzWebApi.csproj",
+      "msbuildProject": "../FastCarzWebApi/FastCarzWebApi.csproj"
+    },
+    "FastCarzWebApp/1.0.0": {
+      "type": "project",
+      "path": "../FastCarzWebApp/FastCarzWebApp.csproj",
+      "msbuildProject": "../FastCarzWebApp/FastCarzWebApp.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "DevOpsTest >= 1.0.0",
+      "FastCarzWebApi >= 1.0.0",
+      "FastCarzWebApp >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 16.5.0",
       "NUnit >= 3.12.0",
       "NUnit3TestAdapter >= 3.16.1"
@@ -4608,11 +4627,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Piroinno\\Code\\DevOpsTest\\app\\DevOpsTest\\DevOpsTest.Tests\\DevOpsTest.Tests.csproj",
+      "projectUniqueName": "D:\\Piroinno\\Code\\DevOpsTest\\Q1\\app\\DevOpsTest\\DevOpsTest.Tests\\DevOpsTest.Tests.csproj",
       "projectName": "DevOpsTest.Tests",
-      "projectPath": "D:\\Piroinno\\Code\\DevOpsTest\\app\\DevOpsTest\\DevOpsTest.Tests\\DevOpsTest.Tests.csproj",
+      "projectPath": "D:\\Piroinno\\Code\\DevOpsTest\\Q1\\app\\DevOpsTest\\DevOpsTest.Tests\\DevOpsTest.Tests.csproj",
       "packagesPath": "C:\\Users\\piro\\.nuget\\packages\\",
-      "outputPath": "D:\\Piroinno\\Code\\DevOpsTest\\app\\DevOpsTest\\DevOpsTest.Tests\\obj\\",
+      "outputPath": "D:\\Piroinno\\Code\\DevOpsTest\\Q1\\app\\DevOpsTest\\DevOpsTest.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -4632,8 +4651,11 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "D:\\Piroinno\\Code\\DevOpsTest\\app\\DevOpsTest\\DevOpsTest\\DevOpsTest.csproj": {
-              "projectPath": "D:\\Piroinno\\Code\\DevOpsTest\\app\\DevOpsTest\\DevOpsTest\\DevOpsTest.csproj"
+            "D:\\Piroinno\\Code\\DevOpsTest\\Q1\\app\\DevOpsTest\\FastCarzWebApi\\FastCarzWebApi.csproj": {
+              "projectPath": "D:\\Piroinno\\Code\\DevOpsTest\\Q1\\app\\DevOpsTest\\FastCarzWebApi\\FastCarzWebApi.csproj"
+            },
+            "D:\\Piroinno\\Code\\DevOpsTest\\Q1\\app\\DevOpsTest\\FastCarzWebApp\\FastCarzWebApp.csproj": {
+              "projectPath": "D:\\Piroinno\\Code\\DevOpsTest\\Q1\\app\\DevOpsTest\\FastCarzWebApp\\FastCarzWebApp.csproj"
             }
           }
         }

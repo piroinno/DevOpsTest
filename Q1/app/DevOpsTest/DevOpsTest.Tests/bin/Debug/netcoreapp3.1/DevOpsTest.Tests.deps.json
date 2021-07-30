@@ -8,7 +8,8 @@
     ".NETCoreApp,Version=v3.1": {
       "DevOpsTest.Tests/1.0.0": {
         "dependencies": {
-          "DevOpsTest": "1.0.0",
+          "FastCarzWebApi": "1.0.0",
+          "FastCarzWebApp": "1.0.0",
           "Microsoft.NET.Test.Sdk": "16.5.0",
           "NUnit": "3.12.0",
           "NUnit3TestAdapter": "3.16.1"
@@ -866,9 +867,14 @@
           }
         }
       },
-      "DevOpsTest/1.0.0": {
+      "FastCarzWebApi/1.0.0": {
         "runtime": {
-          "DevOpsTest.dll": {}
+          "FastCarzWebApi.dll": {}
+        }
+      },
+      "FastCarzWebApp/1.0.0": {
+        "runtime": {
+          "FastCarzWebApp.dll": {}
         }
       }
     }
@@ -1320,7 +1326,12 @@
       "path": "system.xml.xpath.xmldocument/4.3.0",
       "hashPath": "system.xml.xpath.xmldocument.4.3.0.nupkg.sha512"
     },
-    "DevOpsTest/1.0.0": {
+    "FastCarzWebApi/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "FastCarzWebApp/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

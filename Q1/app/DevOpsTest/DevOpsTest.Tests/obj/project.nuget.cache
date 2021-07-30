@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "A2mFdrwxjzSg2deBlPF7UiOJ8wYd8+GOqp/K2Rc88yJBhFN/tzEXuW5LC9MX8OTRg3p0w+P1gYKIG+XTqz8dFg==",
+  "dgSpecHash": "6cTqyHJ085zOrV5akEXd14uI+sklztAr/W5N5jHtjWZ3OCT+28n1VpIgXft4CtAzJ1BvGsB1Xs192+/pSjdMsw==",
   "success": true,
-  "projectFilePath": "D:\\Piroinno\\Code\\DevOpsTest\\app\\DevOpsTest\\DevOpsTest.Tests\\DevOpsTest.Tests.csproj",
+  "projectFilePath": "D:\\Piroinno\\Code\\DevOpsTest\\Q1\\app\\DevOpsTest\\DevOpsTest.Tests\\DevOpsTest.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\piro\\.nuget\\packages\\microsoft.codecoverage\\16.5.0\\microsoft.codecoverage.16.5.0.nupkg.sha512",
     "C:\\Users\\piro\\.nuget\\packages\\microsoft.csharp\\4.0.1\\microsoft.csharp.4.0.1.nupkg.sha512",

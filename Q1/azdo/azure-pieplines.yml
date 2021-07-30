@@ -21,7 +21,8 @@ stages:
         parameters:
           env: dev
           azuresubscription: dev-sub
-          webappname: devopstestwebapi-pi-dev
+          webappname: devopstestwebapp-pi-dev
+          webapiname: devopstestwebapi-pi-dev
 
   - stage: qa
     dependsOn: dev
@@ -30,7 +31,8 @@ stages:
         parameters:
           env: qa
           azuresubscription: qa-sub
-          webappname: devopstestwebapi-pi-qa
+          webappname: devopstestwebapp-pi-qa
+          webapiname: devopstestwebapi-pi-qa
 
   - stage: prod
     dependsOn: qa
@@ -39,4 +41,5 @@ stages:
         parameters:
           env: prod
           azuresubscription: prod-sub
-          webappname: devopstestwebapi-pi-prod
+          webappname: devopstestwebapp-pi-prod
+          webapiname: devopstestwebapi-pi-prod

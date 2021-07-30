@@ -9,16 +9,18 @@
 ## _2) List the tools you will to create and store the Terraform templates._
 My personal preference, I use
 - VSCode to create the templates
+  - Hashicorp terrafrom extention for formarting and linting
 - Git repository to store the templates
-  -  Hashicorp terrafrom extention for formarting and linting
+  
 
 ## _3) Explain the process and steps to create automated deployment pipeline._
 
-An automated deploymented pipeline allows us to identify bugs and fix them quickly. Hence reducing backlog tasks, toil, improves security and reduces state drift.
+An automated deploymented pipelines helps  identify bugs and fix them quickly. Hence reducing backlog tasks, toil, improves security and reduces state drift.
 
 ### Our automated IaC pipeline should achieve the following objectives:
 
 - Code stored in a version controlled system will be tested when changes are detected
+- Deploy quickly and minimize downtime caused b the deployment.
 - Deployment to production will need to be approved
 - Only the master branch can be deployed into production
 - Merges to the master branch will need to be peer reviewed using a PR
@@ -60,13 +62,15 @@ An automated deploymented pipeline allows us to identify bugs and fix them quick
 ## - _1 Window VM in each subnet_
 ## - _1 Storage account_
 
-Created a [default sample template](default_tf_approach\main.tf) where all the resources have been created in the same file. While this pattern works for small environments it does not scale up easily as the number of resources grow. I would recommend using modules and then driving provisioning process using json input variables. 
+Created a [default sample template](default_tf_approach\main.tf) where all the resources have been defined in the same file. While this pattern works for small environments it does not scale up easily as the number of resources grow. 
+
+>I would recommend using modules and then driving the provisioning process using json input variables. 
 
 Another issue with the default template approach is that updates to the priovider modules and even the terraform client can cause errors to occur and render the entire deployment unusable. Modules overcome this issue using versioning. Each module can be stored in its own repository or branch and then sourced and managed independently of the other resources.
 
 example:
 
-In the main.tf file the key vault module can be sourced.
+In the main.tf file the key vault module can be sourced and pinned to a branch or tag
 
 ``` 
 module "key_vault" {
@@ -75,7 +79,7 @@ module "key_vault" {
 }
 ```
 
-Then a new input .tfvars file with the driving parameters can be passed in directly into the module or stored automatically by terraform.
+Then a new input KeyVaults.auto.tfvars.json file with the driving parameters can be passed in directly into the module or stored automatically by terraform.
 
 ``` json
 {

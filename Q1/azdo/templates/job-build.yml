@@ -1,42 +1,47 @@
 jobs:
-- job: AspNetCore
-  pool:
-    name: Azure Pipelines
-    demands:
-    - msbuild
-    - visualstudio
-    - vstest
-  steps:
-  - task: NuGetToolInstaller@0
-    displayName: 'Use NuGet'
-    inputs:
-      versionSpec: 4.4.1
+  - job: AspNetCore
+    pool:
+      name: Azure Pipelines
+      demands:
+        - msbuild
+        - visualstudio
+        - vstest
+    steps:
+      - task: NuGetToolInstaller@0
+        displayName: "Use NuGet"
+        inputs:
+          versionSpec: 4.4.1
 
-  - task: NuGetCommand@2
-    displayName: 'NuGet restore'
-    inputs:
-      restoreSolution: '$(Parameters.solution)'
+      - task: NuGetCommand@2
+        displayName: "NuGet restore"
+        inputs:
+          restoreSolution: "$(Parameters.solution)"
 
-  - task: VSBuild@1
-    displayName: 'Build solution'
-    inputs:
-      solution: '$(Parameters.solution)'
-      msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactstagingdirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
-      platform: '$(BuildPlatform)'
-      configuration: '$(BuildConfiguration)'
+      - task: VSBuild@1
+        displayName: "Build solution"
+        inputs:
+          solution: "$(Parameters.solution)"
+          msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactstagingdirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
+          platform: "$(BuildPlatform)"
+          configuration: "$(BuildConfiguration)"
 
-  - task: VSTest@2
-    displayName: 'Test'
-    inputs:
-      testAssemblyVer2: |
-        **\$(BuildConfiguration)\*test*.dll
-        !**\obj\**
-        platform: '$(BuildPlatform)'
-        configuration: '$(BuildConfiguration)'
+      - task: VSTest@2
+        displayName: "Test"
+        inputs:
+          testAssemblyVer2: |
+            **\$(BuildConfiguration)\*test*.dll
+            !**\obj\**
+            platform: '$(BuildPlatform)'
+            configuration: '$(BuildConfiguration)'
 
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish'
-    inputs:
-      PathtoPublish: '$(build.artifactstagingdirectory)'
-      ArtifactName: '$(Parameters.ArtifactName)'
-    condition: succeededOrFailed()
+      - task: whitesource.whiteSource-bolt-v2.bolt.wss.WhiteSource@21
+        displayName: WhiteSource
+        inputs:
+          projectName: "$(SourceBranchName)"
+
+      - task: PublishBuildArtifacts@1
+        displayName: "Publish"
+        inputs:
+          PathtoPublish: "$(build.artifactstagingdirectory)"
+          ArtifactName: "$(Parameters.ArtifactName)"
+        condition: succeededOrFailed()
