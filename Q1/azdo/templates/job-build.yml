@@ -1,7 +1,7 @@
 jobs:
   - job: AspNetCore
     pool:
-      name: Azure Pipelines
+      name: Default
       demands:
         - msbuild
         - visualstudio

@@ -9,7 +9,7 @@ jobs:
     displayName: Deploy Web Api
     environment: ${{ parameters.env }}
     pool:
-      name: Azure Pipelines
+      name: Default
     strategy:
       runOnce:
         deploy:
@@ -37,6 +37,8 @@ jobs:
 
   - job: Owasp
     dependsOn: deployNetCoreToLinux
+    pool:
+      name: Default
     steps:
       - pwsh: |
           mkdir owaspzap
