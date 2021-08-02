@@ -75,7 +75,7 @@ Other issues with the default template approach are:
 - Updates to the priovider modules and even the terraform client can cause errors to occur and render the entire deployment unusable.
 - The state file becomes too complex. Which can cause plans and applies can run for hours.
 
->A modular approach helps overcome these issues and by using a version controlled system each module can be stored in its own repository or branch and then sourced and managed independently of the other resources. The approach is further described below and [here](alternate_tf_approach/README.MD).
+>A modular approach helps overcome these issues and by using a version controlled system each module can be stored in its own repository or branch and then sourced and managed independently of the other resources. The approach is further described below and [here](alternate_tf_approach/).
 
 _Example_:
 
