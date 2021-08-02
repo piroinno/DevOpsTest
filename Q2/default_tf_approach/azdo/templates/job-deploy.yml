@@ -1,0 +1,42 @@
+parameters:
+  azuresubscription: ""
+  staterg: ""
+  statesa: ""
+  statecaontainer: ""
+  backendAzureRmKey: ""
+  workingDirectory: ""
+
+jobs:
+  - job: Terraform
+    pool:
+      name: Default
+      demands:
+        agent.os -equals Linux
+
+    steps:
+      - task: TerraformInstaller@0
+        inputs:
+          terraformVersion: latest
+      - task: TerraformTaskV2@2
+        displayName: Init
+        inputs:
+          provider: 'azurerm'
+          command: 'init'
+          backendServiceArm: '${{ parameters.azuresubscription }}'
+          backendAzureRmResourceGroupName: ${{ parameters.staterg }}
+          backendAzureRmStorageAccountName: ${{ parameters.statesa }}
+          backendAzureRmContainerName: ${{ parameters.statecaontainer }}
+          backendAzureRmKey: ${{ parameters.statefile }}
+          workingDirectory: ${{ parameters.configdir }}
+      
+      - task: TerraformTaskV2@2
+        displayName: Apply
+        inputs:
+          provider: 'azurerm'
+          command: 'apply'
+          backendServiceArm: '${{ parameters.azuresubscription }}'
+          backendAzureRmResourceGroupName: ${{ parameters.staterg }}
+          backendAzureRmStorageAccountName: ${{ parameters.statesa }}
+          backendAzureRmContainerName: ${{ parameters.statecaontainer }}
+          backendAzureRmKey: ${{ parameters.statefile }}
+          workingDirectory: ${{ parameters.configdir }}
