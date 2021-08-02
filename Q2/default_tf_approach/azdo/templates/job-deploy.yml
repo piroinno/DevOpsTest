@@ -23,7 +23,7 @@ jobs:
           backendAzureRmResourceGroupName: '${{ parameters.staterg }}'
           backendAzureRmStorageAccountName: '${{ parameters.statesa }}'
           backendAzureRmContainerName: '${{ parameters.statecaontainer }}'
-          backendazuremKey: '${{ parameters.backendazuremkey }}'
+          backendAzureRmKey: '${{ parameters.backendazuremkey }}'
           workingDirectory: '${{ parameters.configdir }}'
           allowTelemetryCollection: true
       
@@ -36,6 +36,6 @@ jobs:
           backendAzureRmResourceGroupName: '${{ parameters.staterg }}'
           backendAzureRmStorageAccountName: '${{ parameters.statesa }}'
           backendAzureRmContainerName: '${{ parameters.statecaontainer }}'
-          backendazuremKey: '${{ parameters.backendazuremkey }}'
+          backendAzureRmKey: '${{ parameters.backendazuremkey }}'
           workingDirectory: '${{ parameters.configdir }}'
           allowTelemetryCollection: true

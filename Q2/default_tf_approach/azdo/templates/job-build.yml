@@ -22,7 +22,7 @@ jobs:
           backendAzureRmResourceGroupName: '${{ parameters.staterg }}'
           backendAzureRmStorageAccountName: '${{ parameters.statesa }}'
           backendAzureRmContainerName: '${{ parameters.statecaontainer }}'
-          backendazuremKey: '${{ parameters.backendazuremkey }}'
+          backendAzureRmKey: '${{ parameters.backendazuremkey }}'
           workingDirectory: '${{ parameters.configdir }}'
           allowTelemetryCollection: true
       - bash: |
@@ -43,7 +43,7 @@ jobs:
           backendAzureRmResourceGroupName: '${{ parameters.staterg }}'
           backendAzureRmStorageAccountName: '${{ parameters.statesa }}'
           backendAzureRmContainerName: '${{ parameters.statecaontainer }}'
-          backendazuremKey: '${{ parameters.backendazuremkey }}'
+          backendAzureRmKey: '${{ parameters.backendazuremkey }}'
           workingDirectory: '${{ parameters.configdir }}'
           allowTelemetryCollection: true
       - task: TerraformCLI@0
@@ -55,7 +55,7 @@ jobs:
           backendAzureRmResourceGroupName: '${{ parameters.staterg }}'
           backendAzureRmStorageAccountName: '${{ parameters.statesa }}'
           backendAzureRmContainerName: '${{ parameters.statecaontainer }}'
-          backendazuremKey: '${{ parameters.backendazuremkey }}'
+          backendAzureRmKey: '${{ parameters.backendazuremkey }}'
           workingDirectory: '${{ parameters.configdir }}'
           publishPlanResults : 'plan_results'
           allowTelemetryCollection: true
