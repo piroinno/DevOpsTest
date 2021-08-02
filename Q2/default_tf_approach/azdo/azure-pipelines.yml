@@ -16,6 +16,7 @@ stages:
             statecaontainer: dev
             backendazuremkey: 'q2.tfstate'
             configdir: $(System.DefaultWorkingDirectory)/Q2/default_tf_approach
+            securitykv: q2-state-kv
 
   - stage: deploy
     dependsOn: build
@@ -28,3 +29,4 @@ stages:
           statecaontainer: dev
           backendazuremkey: 'q2.tfstate'
           configdir: $(System.DefaultWorkingDirectory)/Q2/default_tf_approach
+          securitykv: q2-state-kv
