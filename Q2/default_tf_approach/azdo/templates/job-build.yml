@@ -34,7 +34,7 @@ jobs:
       # - bash: |
       #     checkov --directory ${{ parameters.configdir }}
         # displayName: Checkov
-      - task: TerraformTaskV2@2
+      - task: TerraformCLI@0
         displayName: Validate
         inputs:
           backendType: 'azurerm'
