@@ -1,5 +1,7 @@
 This document describes the solution for the DevOps Scenario 2.
 
+[[_TOC_]]
+
 ## _1) What are different artifacts you need to create - name of the artifacts and its purpose_
 
 - main.tf: the entry point used by the terraform client (terraform init, plan and apply). All the required terraform resources are defiend in this file.
