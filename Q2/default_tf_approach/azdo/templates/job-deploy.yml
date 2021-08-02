@@ -20,6 +20,12 @@ jobs:
         inputs:
           backendType: 'azurerm'
           command: 'init'
+          environmentServiceName: '${{ parameters.azuresubscription }}'
+          backendServiceArm: '${{ parameters.azuresubscription }}'
+          backendAzureRmResourceGroupName: '${{ parameters.staterg }}'
+          backendAzureRmStorageAccountName: '${{ parameters.statesa }}'
+          backendAzureRmContainerName: '${{ parameters.statecaontainer }}'
+          backendAzureRmKey: '${{ parameters.backendazuremkey }}'
           workingDirectory: '${{ parameters.configdir }}'
           allowTelemetryCollection: true
       
