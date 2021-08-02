@@ -65,7 +65,7 @@ My personal preference, I use
 
 ## Summary
 
-The entire environment has been [dumped into a dot diagram](default_tf_approach/q1-env.html)
+The entire environment has been [dumped into a dot diagram](https://htmlpreview.github.io/?https://github.com/piroinno/DevOpsTest/blob/main/Q2/default_tf_approach/q1-env.html)
 
 I have created a [default sample template](default_tf_approach/main.tf) where all the resources have been defined in the same file. While this pattern works for small environments it does not scale up easily as the number of resources grow. 
 
