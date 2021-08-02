@@ -17,11 +17,10 @@ jobs:
         inputs:
           restoreSolution: "$(Parameters.solution)"
 
-      - task: VSBuild@1
-        displayName: "Build solution"
+      - task: MSBuild@1
         inputs:
-          solution: "$(Parameters.solution)"
-          msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactstagingdirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
+          solution: '**/*.sln'
+          msbuildArchitecture: 'x64'
           platform: "$(BuildPlatform)"
           configuration: "$(BuildConfiguration)"
 
@@ -38,6 +37,20 @@ jobs:
         displayName: WhiteSource
         inputs:
           projectName: "$(SourceBranchName)"
+
+      - task: ArchiveFiles@2
+        displayName: 'Archive FastCarzWebApp'
+        inputs:
+          rootFolderOrFile: $(System.DefaultWorkingDirectory)\Q1\app\DevOpsTest\FastCarzWebApp\bin\$(BuildConfiguration)\netcoreapp3.1
+          includeRootFolder: false
+          archiveFile: '$(Build.ArtifactStagingDirectory)/FastCarzWebApp.zip'
+
+      - task: ArchiveFiles@2
+        displayName: 'Archive FastCarzWebApi'
+        inputs:
+          rootFolderOrFile: $(System.DefaultWorkingDirectory)\Q1\app\DevOpsTest\FastCarzWebApi\bin\$(BuildConfiguration)\netcoreapp3.1
+          includeRootFolder: false
+          archiveFile: '$(Build.ArtifactStagingDirectory)/FastCarzWebApi.zip'
 
       - task: PublishBuildArtifacts@1
         displayName: "Publish"

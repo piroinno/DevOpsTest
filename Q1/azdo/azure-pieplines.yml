@@ -2,11 +2,12 @@ trigger:
   branches:
     include:
     - master
+    - main
 
 variables:
-  Parameters.solution: ..\app\DevOpsTest\DevOpsTest.sln
-  BuildPlatform: Release
-  BuildConfiguration: Any
+  Parameters.solution: $(System.DefaultWorkingDirectory)\Q1\app\DevOpsTest\DevOpsTest.sln
+  BuildPlatform: Any CPU
+  BuildConfiguration: Release
   Parameters.ArtifactName: drop
 
 stages:
@@ -23,6 +24,7 @@ stages:
           azuresubscription: dev-sub
           webappname: devopstestwebapp-pi-dev
           webapiname: devopstestwebapi-pi-dev
+          apps: ["devopstestwebapp-pi-dev","devopstestwebapi-pi-dev"]
 
   - stage: qa
     dependsOn: dev
@@ -33,6 +35,7 @@ stages:
           azuresubscription: qa-sub
           webappname: devopstestwebapp-pi-qa
           webapiname: devopstestwebapi-pi-qa
+          apps: ["devopstestwebapp-pi-qa","devopstestwebapi-pi-qa"]
 
   - stage: prod
     dependsOn: qa
@@ -43,3 +46,4 @@ stages:
           azuresubscription: prod-sub
           webappname: devopstestwebapp-pi-prod
           webapiname: devopstestwebapi-pi-prod
+          apps: ["devopstestwebapp-pi-prod","devopstestwebapi-pi-prod"]
