@@ -19,7 +19,7 @@ resource "azurerm_resource_group" "resource_group" {
 }
 
 resource "azurerm_storage_account" "storage_account" {
-  name                     = "q2storageaccount"
+  name                     = "q2storageacct"
   resource_group_name      = azurerm_resource_group.resource_group.name
   location                 = var.location
   account_tier             = "Standard"
@@ -37,7 +37,7 @@ resource "azurerm_storage_container" "vm_disks" {
 }
 
 resource "azurerm_virtual_network" "virtual_network" {
-  name                = "q1-vnet"
+  name                = "q2-vnet"
   location            = var.location
   resource_group_name = azurerm_resource_group.resource_group.name
   address_space       = ["10.0.0.0/16"]
@@ -151,6 +151,30 @@ resource "azurerm_key_vault" "kv" {
   }
 
   enabled_for_disk_encryption = true
+}
+
+resource "azurerm_monitor_diagnostic_setting" "diagnostic_setting" {
+  name               = "kvdiags"
+  target_resource_id = azurerm_key_vault.kv.id
+  storage_account_id = azurerm_storage_account.storage_account.id
+
+  log {
+
+    category = "AuditEvent"
+    enabled  = true
+    retention_policy {
+      enabled = true
+      days    = 7
+    }
+  }
+
+  metric {
+    category = "AllMetrics"
+
+    retention_policy {
+      enabled = false
+    }
+  }
 }
 
 resource "azurerm_key_vault_secret" "admin_pass_vault_secret" {
