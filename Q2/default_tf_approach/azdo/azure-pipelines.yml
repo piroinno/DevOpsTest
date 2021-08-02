@@ -16,8 +16,8 @@ stages:
             backendAzureRmKey: q2.tfstate
             configdir: $(System.DefaultWorkingDirectory)/Q2/default_tf_approach
 
-  - stage: dev
-    dependsOn: deploy
+  - stage: deploy
+    dependsOn: build
     jobs:
       - template: templates\job-deploy.yml
         parameters:
