@@ -1,6 +1,5 @@
 This document describes the solution for the DevOps Scenario 2.
 
-[[_TOC_]]
 
 ## _1) What are different artifacts you need to create - name of the artifacts and its purpose_
 

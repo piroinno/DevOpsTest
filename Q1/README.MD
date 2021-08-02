@@ -1,7 +1,5 @@
 This document describes the solution for the DevOps Scenario 1.
 
-[[_TOC_]]
-
 
 # Solution Summary
 Delivered an integrated CICD pipeline which deploys into a dev environment automatically on a commit to master. Deployment into qa and prod are controlled by approval gates.
