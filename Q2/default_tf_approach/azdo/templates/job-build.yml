@@ -26,7 +26,7 @@ jobs:
           workingDirectory: '${{ parameters.configdir }}'
           allowTelemetryCollection: true
       - bash: |
-          terrascan scan -d ${{ parameters.configdir }}
+          terrascan scan -d ${{ parameters.configdir }} -l fatal
         displayName: TerraScan
       - bash: |
           tfsec ${{ parameters.configdir }}
