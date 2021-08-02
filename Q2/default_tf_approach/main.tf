@@ -20,7 +20,7 @@ resource "azurerm_resource_group" "resource_group" {
 
 resource "azurerm_management_lock" "resource_group_lock" {
   name       = "q2-rg-lock"
-  scope      = azurerm_resource_group.resource_group.name
+  scope      = azurerm_resource_group.resource_group.id
   lock_level = "CanNotDelete"
   notes      = "This Resource Group cannot be deleted"
 }
