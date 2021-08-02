@@ -14,7 +14,7 @@ stages:
             staterg: q2-state-rg
             statesa: q2statedev01
             statecaontainer: dev
-            backendazuremKey: q2.tfstate
+            backendazuremkey: q2.tfstate
             configdir: $(System.DefaultWorkingDirectory)/Q2/default_tf_approach
 
   - stage: deploy
@@ -26,5 +26,5 @@ stages:
           staterg: q2-state-rg
           statesa: q2statedev01
           statecaontainer: dev
-          backendazuremKey: q2.tfstate
+          backendazuremkey: q2.tfstate
           configdir: $(System.DefaultWorkingDirectory)/Q2/default_tf_approach

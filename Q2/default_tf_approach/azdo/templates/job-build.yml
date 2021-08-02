@@ -3,7 +3,7 @@ parameters:
   staterg: ""
   statesa: ""
   statecaontainer: ""
-  backendazuremKey: ""
+  backendazuremkey: ""
   configdir: ""
 
 jobs:
@@ -13,10 +13,10 @@ jobs:
       demands:
         agent.os -equals Linux
     steps:
-      - task: TerraformTaskV2@2
+      - task: TerraformCLI@0
         displayName: Init
         inputs:
-          provider: 'azurerm'
+          backendType: 'azurerm'
           command: 'init'
           backendServiceArm: '${{ parameters.azuresubscription }}'
           backendAzureRmResourceGroupName: '${{ parameters.staterg }}'
@@ -24,6 +24,7 @@ jobs:
           backendAzureRmContainerName: '${{ parameters.statecaontainer }}'
           backendazuremKey: '${{ parameters.backendazuremKey }}'
           workingDirectory: '${{ parameters.configdir }}'
+          allowTelemetryCollection: true
       - bash: |
           terrascan scan -c ${{ parameters.configdir }}
         displayName: TerraScan
@@ -42,7 +43,7 @@ jobs:
           backendAzureRmResourceGroupName: '${{ parameters.staterg }}'
           backendAzureRmStorageAccountName: '${{ parameters.statesa }}'
           backendAzureRmContainerName: '${{ parameters.statecaontainer }}'
-          backendazuremKey: '${{ parameters.backendazuremKey }}'
+          backendazuremKey: '${{ parameters.backendazuremkey }}'
           workingDirectory: '${{ parameters.configdir }}'
           allowTelemetryCollection: true
       - task: TerraformCLI@0
@@ -54,7 +55,7 @@ jobs:
           backendAzureRmResourceGroupName: '${{ parameters.staterg }}'
           backendAzureRmStorageAccountName: '${{ parameters.statesa }}'
           backendAzureRmContainerName: '${{ parameters.statecaontainer }}'
-          backendazuremKey: '${{ parameters.backendazuremKey }}'
+          backendazuremKey: '${{ parameters.backendazuremkey }}'
           workingDirectory: '${{ parameters.configdir }}'
           publishPlanResults : 'plan_results'
           allowTelemetryCollection: true
