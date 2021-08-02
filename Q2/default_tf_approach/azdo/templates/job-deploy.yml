@@ -13,7 +13,8 @@ jobs:
       name: Default
       demands:
         agent.os -equals Linux
-
+    workspace:
+      clean: all
     steps:
       - task: TerraformCLI@0
         displayName: Init
