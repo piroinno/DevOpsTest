@@ -19,11 +19,6 @@ jobs:
         inputs:
           backendType: 'azurerm'
           command: 'init'
-          backendServiceArm: '${{ parameters.azuresubscription }}'
-          backendAzureRmResourceGroupName: '${{ parameters.staterg }}'
-          backendAzureRmStorageAccountName: '${{ parameters.statesa }}'
-          backendAzureRmContainerName: '${{ parameters.statecaontainer }}'
-          backendAzureRmKey: '${{ parameters.backendazuremkey }}'
           workingDirectory: '${{ parameters.configdir }}'
           allowTelemetryCollection: true
       - bash: |
@@ -40,11 +35,6 @@ jobs:
         inputs:
           backendType: 'azurerm'
           command: 'validate'
-          backendServiceArm: '${{ parameters.azuresubscription }}'
-          backendAzureRmResourceGroupName: '${{ parameters.staterg }}'
-          backendAzureRmStorageAccountName: '${{ parameters.statesa }}'
-          backendAzureRmContainerName: '${{ parameters.statecaontainer }}'
-          backendAzureRmKey: '${{ parameters.backendazuremkey }}'
           workingDirectory: '${{ parameters.configdir }}'
           allowTelemetryCollection: true
       - task: TerraformCLI@0
@@ -52,6 +42,7 @@ jobs:
         inputs:
           backendType: 'azurerm'
           command: 'plan'
+          environmentServiceName: '${{ parameters.azuresubscription }}'
           backendServiceArm: '${{ parameters.azuresubscription }}'
           backendAzureRmResourceGroupName: '${{ parameters.staterg }}'
           backendAzureRmStorageAccountName: '${{ parameters.statesa }}'
