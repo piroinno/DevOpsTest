@@ -20,11 +20,11 @@ jobs:
           provider: 'azurerm'
           command: 'init'
           backendServiceArm: '${{ parameters.azuresubscription }}'
-          backendAzureRmResourceGroupName: ${{ parameters.staterg }}
-          backendAzureRmStorageAccountName: ${{ parameters.statesa }}
-          backendAzureRmContainerName: ${{ parameters.statecaontainer }}
-          backendAzureRmKey: ${{ parameters.backendazuremKey }}
-          workingDirectory: ${{ parameters.configdir }}
+          backendAzureRmResourceGroupName: '${{ parameters.staterg }}'
+          backendAzureRmStorageAccountName: '${{ parameters.statesa }}'
+          backendAzureRmContainerName: '${{ parameters.statecaontainer }}'
+          backendazuremKey: '${{ parameters.backendazuremKey }}'
+          workingDirectory: '${{ parameters.configdir }}'
       
       - task: TerraformTaskV2@2
         displayName: Apply
@@ -32,8 +32,8 @@ jobs:
           provider: 'azurerm'
           command: 'apply'
           backendServiceArm: '${{ parameters.azuresubscription }}'
-          backendAzureRmResourceGroupName: ${{ parameters.staterg }}
-          backendAzureRmStorageAccountName: ${{ parameters.statesa }}
-          backendAzureRmContainerName: ${{ parameters.statecaontainer }}
-          backendAzureRmKey: ${{ parameters.backendazuremKey }}
-          workingDirectory: ${{ parameters.configdir }}
+          backendAzureRmResourceGroupName: '${{ parameters.staterg }}'
+          backendAzureRmStorageAccountName: '${{ parameters.statesa }}'
+          backendAzureRmContainerName: '${{ parameters.statecaontainer }}'
+          backendazuremKey: '${{ parameters.backendazuremKey }}'
+          workingDirectory: '${{ parameters.configdir }}'

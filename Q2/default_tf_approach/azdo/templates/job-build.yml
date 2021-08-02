@@ -19,11 +19,11 @@ jobs:
           provider: 'azurerm'
           command: 'init'
           backendServiceArm: '${{ parameters.azuresubscription }}'
-          backendAzureRmResourceGroupName: ${{ parameters.staterg }}
-          backendAzureRmStorageAccountName: ${{ parameters.statesa }}
-          backendAzureRmContainerName: ${{ parameters.statecaontainer }}
-          backendazuremKey: ${{ parameters.backendazuremKey }}
-          workingDirectory: ${{ parameters.configdir }}
+          backendAzureRmResourceGroupName: '${{ parameters.staterg }}'
+          backendAzureRmStorageAccountName: '${{ parameters.statesa }}'
+          backendAzureRmContainerName: '${{ parameters.statecaontainer }}'
+          backendazuremKey: '${{ parameters.backendazuremKey }}'
+          workingDirectory: '${{ parameters.configdir }}'
       - bash: |
           terrascan scan -c ${{ parameters.configdir }}
         displayName: TerraScan
@@ -39,19 +39,19 @@ jobs:
           provider: 'azurerm'
           command: 'validate'
           backendServiceArm: '${{ parameters.azuresubscription }}'
-          backendAzureRmResourceGroupName: ${{ parameters.staterg }}
-          backendAzureRmStorageAccountName: ${{ parameters.statesa }}
-          backendAzureRmContainerName: ${{ parameters.statecaontainer }}
-          backendAzureRmKey: ${{ parameters.backendazuremKey }}
-          workingDirectory: ${{ parameters.configdir }}
+          backendAzureRmResourceGroupName: '${{ parameters.staterg }}'
+          backendAzureRmStorageAccountName: '${{ parameters.statesa }}'
+          backendAzureRmContainerName: '${{ parameters.statecaontainer }}'
+          backendazuremKey: '${{ parameters.backendazuremKey }}'
+          workingDirectory: '${{ parameters.configdir }}'
       - task: TerraformTaskV2@2
         displayName: Plan
         inputs:
           provider: 'azurerm'
           command: 'plan'
           backendServiceArm: '${{ parameters.azuresubscription }}'
-          backendAzureRmResourceGroupName: ${{ parameters.staterg }}
-          backendAzureRmStorageAccountName: ${{ parameters.statesa }}
-          backendAzureRmContainerName: ${{ parameters.statecaontainer }}
-          backendAzureRmKey: ${{ parameters.backendazuremKey }}
-          workingDirectory: ${{ parameters.configdir }}
+          backendAzureRmResourceGroupName: '${{ parameters.staterg }}'
+          backendAzureRmStorageAccountName: '${{ parameters.statesa }}'
+          backendAzureRmContainerName: '${{ parameters.statecaontainer }}'
+          backendazuremKey: '${{ parameters.backendazuremKey }}'
+          workingDirectory: '${{ parameters.configdir }}'
