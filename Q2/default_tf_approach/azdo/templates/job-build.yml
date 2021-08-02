@@ -71,9 +71,4 @@ jobs:
           workingDirectory: '${{ parameters.configdir }}'
           publishPlanResults : 'plan_results'
           allowTelemetryCollection: true
-        env:
-          TF_IN_AUTOMATION: 'True'
-          tenant_id: '$(tenant-id)'
-          subscription_id: '$(subscription-id)'
-          client_id: '$(client-id)'
-          client_secret: '$(client-secret)'
+          runAzLogin: true
