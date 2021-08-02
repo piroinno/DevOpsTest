@@ -15,11 +15,6 @@ jobs:
         agent.os -equals Linux
 
     steps:
-      - task: AzureKeyVault@1
-        inputs:
-          azureSubscription: '${{ parameters.azuresubscription }}'
-          keyVaultName: '${{ parameters.securitykv }}'
-          secretsFilter: '*'
       - task: TerraformCLI@0
         displayName: Init
         inputs:
@@ -32,12 +27,6 @@ jobs:
           backendAzureRmKey: '${{ parameters.backendazuremkey }}'
           workingDirectory: '${{ parameters.configdir }}'
           allowTelemetryCollection: true
-        env:
-          TF_IN_AUTOMATION: 'True'
-          tenant_id: '$(tenant-id)'
-          subscription_id: '$(subscription-id)'
-          client_id: '$(client-id)'
-          client_secret: '$(client-secret)'
       
       - task: TerraformCLI@0
         displayName: Apply
@@ -51,9 +40,3 @@ jobs:
           backendAzureRmKey: '${{ parameters.backendazuremkey }}'
           workingDirectory: '${{ parameters.configdir }}'
           allowTelemetryCollection: true
-        env:
-          TF_IN_AUTOMATION: 'True'
-          tenant_id: '$(tenant-id)'
-          subscription_id: '$(subscription-id)'
-          client_id: '$(client-id)'
-          client_secret: '$(client-secret)'
