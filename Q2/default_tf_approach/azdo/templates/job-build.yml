@@ -28,12 +28,12 @@ jobs:
       - bash: |
           terrascan scan -d ${{ parameters.configdir }} -l fatal
         displayName: TerraScan
-      - bash: |
-          tfsec ${{ parameters.configdir }}
-        displayName: TfSec
-      - bash: |
-          checkov --directory ${{ parameters.configdir }}
-        displayName: Checkov
+      # - bash: |
+      #     tfsec ${{ parameters.configdir }}
+      #   displayName: TfSec
+      # - bash: |
+      #     checkov --directory ${{ parameters.configdir }}
+        # displayName: Checkov
       - task: TerraformTaskV2@2
         displayName: Validate
         inputs:
