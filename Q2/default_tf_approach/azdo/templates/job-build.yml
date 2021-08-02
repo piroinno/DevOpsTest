@@ -3,7 +3,7 @@ parameters:
   staterg: ""
   statesa: ""
   statecaontainer: ""
-  backendAzureRmKey: ""
+  backendazuremKey: ""
   configdir: ""
 
 jobs:
@@ -22,7 +22,7 @@ jobs:
           backendAzureRmResourceGroupName: ${{ parameters.staterg }}
           backendAzureRmStorageAccountName: ${{ parameters.statesa }}
           backendAzureRmContainerName: ${{ parameters.statecaontainer }}
-          backendAzureRmKey: ${{ parameters.statefile }}
+          backendazuremKey: ${{ parameters.backendazuremKey }}
           workingDirectory: ${{ parameters.configdir }}
       - bash: |
           terrascan scan -c ${{ parameters.configdir }}
@@ -42,7 +42,7 @@ jobs:
           backendAzureRmResourceGroupName: ${{ parameters.staterg }}
           backendAzureRmStorageAccountName: ${{ parameters.statesa }}
           backendAzureRmContainerName: ${{ parameters.statecaontainer }}
-          backendAzureRmKey: ${{ parameters.statefile }}
+          backendAzureRmKey: ${{ parameters.backendazuremKey }}
           workingDirectory: ${{ parameters.configdir }}
       - task: TerraformTaskV2@2
         displayName: Plan
@@ -53,5 +53,5 @@ jobs:
           backendAzureRmResourceGroupName: ${{ parameters.staterg }}
           backendAzureRmStorageAccountName: ${{ parameters.statesa }}
           backendAzureRmContainerName: ${{ parameters.statecaontainer }}
-          backendAzureRmKey: ${{ parameters.statefile }}
+          backendAzureRmKey: ${{ parameters.backendazuremKey }}
           workingDirectory: ${{ parameters.configdir }}

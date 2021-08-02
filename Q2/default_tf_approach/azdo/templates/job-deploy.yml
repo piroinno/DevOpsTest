@@ -3,8 +3,8 @@ parameters:
   staterg: ""
   statesa: ""
   statecaontainer: ""
-  backendAzureRmKey: ""
-  workingDirectory: ""
+  backendazuremKey: ""
+  configdir: ""
 
 jobs:
   - job: Terraform
@@ -23,7 +23,7 @@ jobs:
           backendAzureRmResourceGroupName: ${{ parameters.staterg }}
           backendAzureRmStorageAccountName: ${{ parameters.statesa }}
           backendAzureRmContainerName: ${{ parameters.statecaontainer }}
-          backendAzureRmKey: ${{ parameters.statefile }}
+          backendAzureRmKey: ${{ parameters.backendazuremKey }}
           workingDirectory: ${{ parameters.configdir }}
       
       - task: TerraformTaskV2@2
@@ -35,5 +35,5 @@ jobs:
           backendAzureRmResourceGroupName: ${{ parameters.staterg }}
           backendAzureRmStorageAccountName: ${{ parameters.statesa }}
           backendAzureRmContainerName: ${{ parameters.statecaontainer }}
-          backendAzureRmKey: ${{ parameters.statefile }}
+          backendAzureRmKey: ${{ parameters.backendazuremKey }}
           workingDirectory: ${{ parameters.configdir }}
