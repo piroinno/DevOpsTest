@@ -14,9 +14,6 @@ jobs:
         agent.os -equals Linux
 
     steps:
-      - task: TerraformInstaller@0
-        inputs:
-          terraformVersion: latest
       - task: TerraformTaskV2@2
         displayName: Init
         inputs:
