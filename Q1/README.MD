@@ -20,8 +20,8 @@ Delivered an integrated CICD pipeline which deploys into a dev environment autom
 > Also worth mentioning is that I have used Azure DevOps [YAML pipelines](https://docs.microsoft.com/en-us/azure/devops/pipelines/get-started/what-is-azure-pipelines?view=azure-devops) simply to reinforce the infrastrucutre as code concept. The deployment pipleine is version controlled.
 # Solution Overview
 
-This solution uses Azure resources (resource groups, app service and app api) I have created in a new Azure account (whihc offers $200 credit for one month).
-The following resoruces have been created to fulfil the needs of the dev, qa and prod environments:
+This solution uses Azure resources (resource groups, app service and app api). I have also created a new Azure account (using the free $200 credit for one month).
+The following resoruces have been created to fulfill the needs of the dev, qa and prod environments:
 
 - dev:
   - subscritption: dev-sub
