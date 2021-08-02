@@ -1,4 +1,4 @@
-# This document describes the solution for the DevOps Scenario 2.
+This document describes the solution for the DevOps Scenario 2.
 
 ## _1) What are different artifacts you need to create - name of the artifacts and its purpose_
 
@@ -15,12 +15,12 @@ My personal preference, I use
 
 ## _3) Explain the process and steps to create automated deployment pipeline._
 
-An automated deploymented pipelines helps  identify bugs and fix them quickly. Hence reducing backlog tasks, toil, improves security and reduces state drift.
+> An automated deploymented pipelines helps  identify bugs and fix them quickly. Hence reducing backlog tasks, toil, improves security and reduces state drift.
 
-### Our automated IaC pipeline should achieve the following objectives:
+### Generally an automated IaC pipeline should achieve the following objectives:
 
 - Code stored in a version controlled system will be tested when changes are detected
-- Deploy quickly and minimize downtime caused b the deployment.
+- Deploy quickly and minimize downtime caused by the deployment.
 - Deployment to production will need to be approved
 - Only the master branch can be deployed into production
 - Merges to the master branch will need to be peer reviewed using a PR
@@ -30,7 +30,7 @@ An automated deploymented pipelines helps  identify bugs and fix them quickly. H
 
 ### We can achieve these objetives by using:
 
-- Azure DevOps pipelines as the ochestration tool triggered on changes in the repository (commits or merges).
+- Azure DevOps pipelines as the ochestration tool triggered by changes in the repository (commits or merges).
 - Use an azure storage account (with versioning enabled) to store our terraform state
 - Key Vaults to store keys and secrets with RBAC roles and access policies applied. Secret values can be substituted at deploy or build time in the pipeline.
 - Use policies to protect the master branch
@@ -40,7 +40,7 @@ An automated deploymented pipelines helps  identify bugs and fix them quickly. H
   - WhiteSource to check to any open source license issues
   - Terratest or powershell pester tests to validate our changes before merging to master or deploying to production
 
-### Steps
+### Configuration steps
 
 - Create an Azure Devops organisation
 - Create a project
@@ -62,15 +62,23 @@ An automated deploymented pipelines helps  identify bugs and fix them quickly. H
 ## - _1 Window VM in each subnet_
 ## - _1 Storage account_
 
-Created a [default sample template](default_tf_approach\main.tf) where all the resources have been defined in the same file. While this pattern works for small environments it does not scale up easily as the number of resources grow. 
+## Summary
+
+The entire environment has been [dumped into a dot diagram](default_tf_approach/q1-env.html)
+
+I have created a [default sample template](default_tf_approach/main.tf) where all the resources have been defined in the same file. While this pattern works for small environments it does not scale up easily as the number of resources grow. 
 
 >I would recommend using modules and then driving the provisioning process using json input variables. 
 
-Another issue with the default template approach is that updates to the priovider modules and even the terraform client can cause errors to occur and render the entire deployment unusable. Modules overcome this issue using versioning. Each module can be stored in its own repository or branch and then sourced and managed independently of the other resources.
+Other issues with the default template approach are:
+- Updates to the priovider modules and even the terraform client can cause errors to occur and render the entire deployment unusable.
+- The state file becomes too complex. Which can cause plans and applies can run for hours.
 
-example:
+>A modular approach helps overcome these issues and by using a version controlled system each module can be stored in its own repository or branch and then sourced and managed independently of the other resources. The approach is further described below and [here](alternate_tf_approach/README.MD).
 
-In the main.tf file the key vault module can be sourced and pinned to a branch or tag
+_Example_:
+
+In the [main.tf](alternate_tf_approach/main.tf) file the key vault module can be sourced and pinned to a branch or tag
 
 ``` 
 module "key_vault" {
@@ -99,11 +107,7 @@ Then a new input KeyVaults.auto.tfvars.json file with the driving parameters can
 }
 ```
 
-[More information](alternate_tf_approach\README.MD)
+[More information](alternate_tf_approach/README.MD)
 ## _5) Explain how will you access the password stored in Key Vault and use it as Admin Password in the VM Terraform template._
 
 A random string resource has been used to generate a random string (12 characters, contains upper and lower case with special characters). The random string was used as input into the the virtual machine admin password field. A new key vault resource was added to the template and used to store the admin password as a secret.
-
-## Summary
-
-The entire environment has been [dumped into a dot diagram](default_tf_approach\q1-env.html)
