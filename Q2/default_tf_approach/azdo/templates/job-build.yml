@@ -36,7 +36,7 @@ jobs:
       - task: TerraformTaskV2@2
         displayName: Validate
         inputs:
-          provider: 'azurerm'
+          backendType: 'azurerm'
           command: 'validate'
           backendServiceArm: '${{ parameters.azuresubscription }}'
           backendAzureRmResourceGroupName: '${{ parameters.staterg }}'
@@ -44,10 +44,11 @@ jobs:
           backendAzureRmContainerName: '${{ parameters.statecaontainer }}'
           backendazuremKey: '${{ parameters.backendazuremKey }}'
           workingDirectory: '${{ parameters.configdir }}'
-      - task: TerraformTaskV2@2
+          allowTelemetryCollection: true
+      - task: TerraformCLI@0
         displayName: Plan
         inputs:
-          provider: 'azurerm'
+          backendType: 'azurerm'
           command: 'plan'
           backendServiceArm: '${{ parameters.azuresubscription }}'
           backendAzureRmResourceGroupName: '${{ parameters.staterg }}'
@@ -55,3 +56,5 @@ jobs:
           backendAzureRmContainerName: '${{ parameters.statecaontainer }}'
           backendazuremKey: '${{ parameters.backendazuremKey }}'
           workingDirectory: '${{ parameters.configdir }}'
+          publishPlanResults : 'plan_results'
+          allowTelemetryCollection: true

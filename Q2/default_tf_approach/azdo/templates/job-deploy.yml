@@ -14,10 +14,10 @@ jobs:
         agent.os -equals Linux
 
     steps:
-      - task: TerraformTaskV2@2
+      - task: TerraformCLI@0
         displayName: Init
         inputs:
-          provider: 'azurerm'
+          backendType: 'azurerm'
           command: 'init'
           backendServiceArm: '${{ parameters.azuresubscription }}'
           backendAzureRmResourceGroupName: '${{ parameters.staterg }}'
@@ -25,11 +25,12 @@ jobs:
           backendAzureRmContainerName: '${{ parameters.statecaontainer }}'
           backendazuremKey: '${{ parameters.backendazuremKey }}'
           workingDirectory: '${{ parameters.configdir }}'
+          allowTelemetryCollection: true
       
-      - task: TerraformTaskV2@2
+      - task: TerraformCLI@0
         displayName: Apply
         inputs:
-          provider: 'azurerm'
+          backendType: 'azurerm'
           command: 'apply'
           backendServiceArm: '${{ parameters.azuresubscription }}'
           backendAzureRmResourceGroupName: '${{ parameters.staterg }}'
@@ -37,3 +38,4 @@ jobs:
           backendAzureRmContainerName: '${{ parameters.statecaontainer }}'
           backendazuremKey: '${{ parameters.backendazuremKey }}'
           workingDirectory: '${{ parameters.configdir }}'
+          allowTelemetryCollection: true
