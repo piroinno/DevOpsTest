@@ -1,0 +1,32 @@
+trigger:
+  branches:
+    include:
+    - master
+    - main
+    - feature/pi/q2-tf-tests
+
+stages:
+  - stage: build
+    jobs:
+      - template: templates\job-build.yml
+        parameters:
+            azuresubscription: dev-sub
+            staterg: q2-state-rg
+            statesa: q2statedev01
+            statecaontainer: dev
+            backendazuremkey: 'q2.tfstate'
+            configdir: $(System.DefaultWorkingDirectory)/Q2/default_tf_approach
+            securitykv: q2-state-kv
+
+  - stage: deploy
+    dependsOn: build
+    jobs:
+      - template: templates\job-deploy.yml
+        parameters:
+          azuresubscription: dev-sub
+          staterg: q2-state-rg
+          statesa: q2statedev01
+          statecaontainer: dev
+          backendazuremkey: 'q2.tfstate'
+          configdir: $(System.DefaultWorkingDirectory)/Q2/default_tf_approach
+          securitykv: q2-state-kv

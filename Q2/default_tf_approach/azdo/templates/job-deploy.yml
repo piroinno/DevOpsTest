@@ -1,0 +1,45 @@
+parameters:
+  azuresubscription: ""
+  staterg: ""
+  statesa: ""
+  statecaontainer: ""
+  backendazuremkey: ""
+  configdir: ""
+  securitykv: ""
+
+jobs:
+  - job: Terraform
+    pool:
+      name: Default
+      demands:
+        agent.os -equals Linux
+    workspace:
+      clean: all
+    steps:
+      - task: TerraformCLI@0
+        displayName: Init
+        inputs:
+          backendType: 'azurerm'
+          command: 'init'
+          environmentServiceName: '${{ parameters.azuresubscription }}'
+          backendServiceArm: '${{ parameters.azuresubscription }}'
+          backendAzureRmResourceGroupName: '${{ parameters.staterg }}'
+          backendAzureRmStorageAccountName: '${{ parameters.statesa }}'
+          backendAzureRmContainerName: '${{ parameters.statecaontainer }}'
+          backendAzureRmKey: '${{ parameters.backendazuremkey }}'
+          workingDirectory: '${{ parameters.configdir }}'
+          allowTelemetryCollection: true
+      
+      - task: TerraformCLI@0
+        displayName: Apply
+        inputs:
+          backendType: 'azurerm'
+          command: 'apply'
+          environmentServiceName: '${{ parameters.azuresubscription }}'
+          backendServiceArm: '${{ parameters.azuresubscription }}'
+          backendAzureRmResourceGroupName: '${{ parameters.staterg }}'
+          backendAzureRmStorageAccountName: '${{ parameters.statesa }}'
+          backendAzureRmContainerName: '${{ parameters.statecaontainer }}'
+          backendAzureRmKey: '${{ parameters.backendazuremkey }}'
+          workingDirectory: '${{ parameters.configdir }}'
+          allowTelemetryCollection: true

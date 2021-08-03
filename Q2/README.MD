@@ -55,6 +55,7 @@ My personal preference, I use
   -  The build stage will pull the source code where it is tested then subsequently packaged into an artifact. Failures can be reported into a slack or teams channel using hooks or connectors
   - the release stages, starting with dev will always be deployed into after a successfull build. Here the chnages are further tested by automatically provisioning a test resource (such as a conatiner for web apps or virtual machine). Once the test has completed the resource is detroyed to reduce costs. Deployment into the qa and production branches can be gated using approval gates and checks to prevent non approved changes from making it into production.
 
+Sample pipeline: https://dev.azure.com/piroinno/DevOpsTest/_build?definitionId=5&_a=summary
 
 ## _4) Create a sample Terraform template you will use to deploy Below services:_
 ## - _Vnet_

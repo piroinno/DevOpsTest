@@ -1,0 +1,60 @@
+parameters:
+  azuresubscription: ""
+  staterg: ""
+  statesa: ""
+  statecaontainer: ""
+  backendazuremkey: ""
+  configdir: ""
+  securitykv: ""
+
+jobs:
+  - job: Terraform
+    pool:
+      name: Default
+      demands:
+        agent.os -equals Linux
+    workspace:
+      clean: all
+    steps:
+      - task: TerraformCLI@0
+        displayName: Init
+        inputs:
+          backendType: 'azurerm'
+          command: 'init'
+          backendServiceArm: '${{ parameters.azuresubscription }}'
+          backendAzureRmResourceGroupName: '${{ parameters.staterg }}'
+          backendAzureRmStorageAccountName: '${{ parameters.statesa }}'
+          backendAzureRmContainerName: '${{ parameters.statecaontainer }}'
+          backendAzureRmKey: '${{ parameters.backendazuremkey }}'
+          workingDirectory: '${{ parameters.configdir }}'
+          allowTelemetryCollection: true
+      - bash: |
+          terrascan scan -d ${{ parameters.configdir }} -l fatal
+        displayName: TerraScan
+      # - bash: |
+      #     tfsec ${{ parameters.configdir }}
+      #   displayName: TfSec
+      # - bash: |
+      #     checkov --directory ${{ parameters.configdir }}
+        # displayName: Checkov
+      - task: TerraformCLI@0
+        displayName: Validate
+        inputs:
+          backendType: 'azurerm'
+          command: 'validate'
+          workingDirectory: '${{ parameters.configdir }}'
+          allowTelemetryCollection: true
+      - task: TerraformCLI@0
+        displayName: Plan
+        inputs:
+          backendType: 'azurerm'
+          command: 'plan'
+          environmentServiceName: '${{ parameters.azuresubscription }}'
+          backendServiceArm: '${{ parameters.azuresubscription }}'
+          backendAzureRmResourceGroupName: '${{ parameters.staterg }}'
+          backendAzureRmStorageAccountName: '${{ parameters.statesa }}'
+          backendAzureRmContainerName: '${{ parameters.statecaontainer }}'
+          backendAzureRmKey: '${{ parameters.backendazuremkey }}'
+          workingDirectory: '${{ parameters.configdir }}'
+          publishPlanResults : 'plan_results'
+          allowTelemetryCollection: true
